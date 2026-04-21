@@ -2,7 +2,11 @@
 import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-import { isValidActivity, calculateEfficiency } from "../utils/validation";
+import {
+  isValidActivity,
+  calculateEfficiency,
+  getActivityId,
+} from "../utils/validation";
 
 const ActivityDetail = () => {
   const { id } = useParams();
@@ -12,7 +16,7 @@ const ActivityDetail = () => {
   if (state.error) return <div>Error: {state.error}</div>;
 
   const activity = state.activities.find(
-    (act) => act.activityld === id || act.activityld === parseInt(id)
+    (act) => String(getActivityId(act)) === String(id)
   );
 
   if (!activity || !isValidActivity(activity)) {
@@ -29,7 +33,7 @@ const ActivityDetail = () => {
       <h1>{activity.name || "Unknown"}</h1>
       <div className="detail-info">
         <p>
-          <strong>Activity ID:</strong> {activity.activityld}
+          <strong>Activity ID:</strong> {getActivityId(activity)}
         </p>
         <p>
           <strong>Steps:</strong> {activity.steps}

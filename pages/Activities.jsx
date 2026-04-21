@@ -2,7 +2,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import ActivityItem from "../components/ActivityItem";
-import { getValidActivities } from "../utils/validation";
+import { getActivityId, getValidActivities } from "../utils/validation";
 
 const Activities = () => {
   const { state, toggleGoalAchieved } = useContext(AppContext);
@@ -19,7 +19,7 @@ const Activities = () => {
       <div className="activities-list">
         {validActivities.map((activity) => (
           <ActivityItem
-            key={activity.activityID}
+            key={getActivityId(activity)}
             activity={activity}
             onToggle={toggleGoalAchieved}
           />

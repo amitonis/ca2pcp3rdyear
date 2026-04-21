@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import ActivityItem from "../components/ActivityItem";
-import { getValidActivities } from "../utils/validation";
+import { getActivityId, getValidActivities } from "../utils/validation";
 
 const Filter = () => {
   const { state, toggleGoalAchieved } = useContext(AppContext);
@@ -48,7 +48,7 @@ const Filter = () => {
       <div className="filtered-activities">
         {filteredActivities.map((activity) => (
           <ActivityItem
-            key={activity.activityID}
+            key={getActivityId(activity)}
             activity={activity}
             onToggle={toggleGoalAchieved}
           />

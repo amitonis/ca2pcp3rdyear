@@ -1,12 +1,15 @@
 // components/ActivityItem.jsx
 import React from "react";
+import { getActivityId } from "../utils/validation";
 
 const ActivityItem = ({ activity, onToggle }) => {
+  const activityId = getActivityId(activity);
+
   return (
     <div data-testid="activity-item" className="activity-item">
       <h3>{activity.name || "Unknown"}</h3>
       <p>
-        <strong>Activity ID:</strong> {activity.activityld}
+        <strong>Activity ID:</strong> {activityId}
       </p>
       <p>
         <strong>Steps:</strong> {activity.steps}
@@ -24,7 +27,7 @@ const ActivityItem = ({ activity, onToggle }) => {
         <strong>Goal Achieved:</strong>{" "}
         {activity.goalAchieved ? "Yes" : "No"}
       </p>
-      <button onClick={() => onToggle(activity.activityld)}>
+      <button onClick={() => onToggle(activityId)}>
         Toggle Goal Status
       </button>
     </div>

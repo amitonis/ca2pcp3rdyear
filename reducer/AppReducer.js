@@ -1,4 +1,5 @@
 // reducer/AppReducer.js
+import { getActivityId } from "../utils/validation";
 
 export const initialState = {
   activities: [],
@@ -19,7 +20,7 @@ export const appReducer = (state, action) => {
       return {
         ...state,
         activities: state.activities.map((activity) =>
-          activity.activityld === action.payload
+          String(getActivityId(activity)) === String(action.payload)
             ? {
                 ...activity,
                 goalAchieved: !activity.goalAchieved,
