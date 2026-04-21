@@ -1,10 +1,14 @@
 // utils/validation.js
 
-export const getActivityId = (activity) => activity.activityID ?? activity.activityld;
+export const getActivityId = (activity) =>
+  activity.activityID ??
+  activity.activityId ??
+  activity.activityld ??
+  activity.activityLd ??
+  activity.id;
 
 export const isValidActivity = (activity) => {
   return (
-    getActivityId(activity) != null &&
     activity.steps > 0 &&
     activity.caloriesBurned > 0 &&
     activity.workoutMinutes > 0 &&

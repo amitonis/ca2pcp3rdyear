@@ -17,6 +17,9 @@ export const appReducer = (state, action) => {
       };
 
     case "TOGGLE_GOAL_ACHIEVED":
+      if (action.payload == null) {
+        return state;
+      }
       return {
         ...state,
         activities: state.activities.map((activity) =>
